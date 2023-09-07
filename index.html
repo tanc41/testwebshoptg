@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Order</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1>Service Order Form</h1>
+    <form id="orderForm">
+        <label for="service">Select a Service:</label>
+        <select id="service" name="service">
+            <option value="service1">Service 1</option>
+            <option value="service2">Service 2</option>
+            <!-- Add more service options as needed -->
+        </select>
+        <br>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <button type="button" onclick="submitOrder()">Submit Order</button>
+    </form>
+
+    <script>
+        function submitOrder() {
+            const service = document.getElementById('service').value;
+            const name = document.getElementById('name').value;
+
+            // Create a Telegram conversation with your bot
+            window.Telegram.WebApp.startConversation('YOUR_BOT_USERNAME', function (response) {
+                const chatId = response.id;
+
+                // Send the order information to your Telegram bot
+                const message = New order received:\nService: ${service}\nName: ${name};
+                window.Telegram.WebApp.sendTextMessage(chatId, message, {}, function () {
+                    // After sending the message to Telegram, save the order in MongoDB (you need to implement this part)
+                    saveOrderInMongoDB(service, name);
+
+                    // Provide feedback to the user
+                    alert('Order submitted successfully.');
+                });
+            });
+        }
+
+        function saveOrderInMongoDB(service, name) {
+            // Implement this function to save the order in your MongoDB database
+            // You will need to use a Node.js server with MongoDB integration, similar to the examples provided earlier.
+        }
+    </script>
+</body>
+</html>
