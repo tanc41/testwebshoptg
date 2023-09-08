@@ -1,4 +1,5 @@
 <?php
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedService = $_POST["service"];
     $quantity = $_POST["quantity"];
