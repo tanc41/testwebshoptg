@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Services</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Order Services</h1>
+    <form action="process_order.php" method="post">
+        <label for="service">Select a Service:</label>
+        <select name="service" id="service">
+            <option value="service1">Service 1</option>
+            <option value="service2">Service 2</option>
+            <option value="service3">Service 3</option>
+        </select>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="1" required>
+        <input type="submit" value="Order">
+    </form>
+</body>
+</html>
