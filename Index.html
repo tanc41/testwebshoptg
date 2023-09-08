@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input {
+            margin-bottom: 1rem;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order Services</h1>
+    </header>
+    <div class="container">
+        <form>
+            <label for="service">Select a Service:</label>
+            <select id="service" name="service">
+                <option value="service1">Service 1</option>
+                <option value="service2">Service 2</option>
+                <option value="service3">Service 3</option>
+            </select>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment">
+                <option value="credit">Credit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+            <input type="submit" value="Order Now">
+        </form>
+    </div>
+</body>
+</html>
