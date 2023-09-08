@@ -1,0 +1,66 @@
+body {
+    background-color: #05071e;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: url('space-background.jpg');
+    background-size: cover;
+    text-align: center;
+    padding: 200px 0;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+header p {
+    font-size: 18px;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+#order-form {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    display: inline-block;
+}
+
+h2 {
+    color: #ffc107;
+    font-size: 24px;
+}
+
+label, select, input[type="number"] {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+button {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff9800;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #05071e;
+}
