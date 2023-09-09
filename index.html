@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Service Order</title>
+    <title>Order and Payment Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Service Order</h1>
-    
-    <!-- Telegram Web Widget -->
-    <script async src="https://telegram.org/js/telegram-widget.js?7"
-        data-telegram-login="SnakePRBot"
-        data-size="large"
-        data-radius="10"
-        data-auth-url="/auth"
-        data-request-access="write"></script>
+    <header>
+        <h1>Order and Payment Page</h1>
+    </header>
+    <main>
+        <form id="order-form">
+            <label for="service">Select a Service:</label>
+            <select id="service" name="service">
+                <option value="service1">Service 1</option>
+                <option value="service2">Service 2</option>
+                <option value="service3">Service 3</option>
+            </select>
 
-    <!-- You can add more HTML elements here for your service order form -->
-    
-    <script>
-        // Handle user authentication with your server (replace with your backend code)
-        function onTelegramAuth(user) {
-            // You can send user data to your server for authentication and service order processing
-            // Example: Send the user's Telegram ID to your server for identification
-            const userId = user.id;
-            // Send the userId to your server via AJAX or fetch
-            // Example using fetch:
-            fetch('/process_order', {
-                method: 'POST',
-                body: JSON.stringify({ userId }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => {
-                // Handle the response from your server (e.g., confirm the order)
-                // You can also display a confirmation message to the user
-                if (response.ok) {
-                    alert('Your service order has been placed successfully!');
-                } else {
-                    alert('Failed to process your service order. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error processing the service order:', error);
-                alert('An error occurred while processing your order. Please try again later.');
-            });
-        }
-    </script>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+
+            <label for="total">Total Amount:</label>
+            <input type="text" id="total" name="total" readonly>
+
+            <button type="submit">Pay</button>
+        </form>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
