@@ -1,0 +1,96 @@
+	<section class="page-section"> 
+		<?php
+			$stmt = $pdo->prepare('SELECT * FROM categories WHERE CategoryActive = "Yes"');
+			$stmt->execute();
+			
+			if($stmt->rowCount() > 0) {
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+		?>
+			<div class="container relative">
+				<div class="row">
+					<div class="col-sm-6 mb-20 col-portlet">
+						<div class="col-sm-12">
+							<form method="POST" id="new-order" onsubmit="event.preventDefault(); newOrder();">
+								<div class="form-group">
+									<div class="form-tip">Категория</div>
+									<select class="input-md form-control" id="category" onChange="removeQuantity();">
+										<option disabled selected id="sel">Что будем крутить?</option>
+										<?php
+											$html = '';
+											
+											foreach($stmt->fetchAll() as $row) {
+												$html .= '<option value="'.$row['CategoryID'].'">'.$row['CategoryName'].'</option>';
+											}
+											
+											echo $html;
+										?>
+									</select>
+								</div>
+								<div class="form-group">
+									<div class="form-tip">Сервис</div>
+									<select class="input-md form-control" id="service" name="service"
+                                            onChange="selectService(this.value);
+                                            nullQuantity();
+                                            updateMinQuantity(this.value);
+                                            updateMaxQuantity(this.value);
+                                            updateDescription(this.value)
+                                            ">
+										<option style="display:none;">Выберите категорию.</option>
+									<select>
+								</div>
+								<div class="form-group">
+									<div class="form-tip">Ссылка</div>
+									<input type="text" id="order_link" name="link" class="input-md round form-control def-text" onChange="updateLinkMaxQuantity(document.getElementById('service').value, this.value)" placeholder="Ссылка" required>
+								</div>
+								<div class="form-group">
+									<div class="form-tip">Количество</div>
+									<input type="number" id="order_quantity" name="quantity" class="input-md round form-control def-text" onChange="updatePrice(document.getElementById('service').value, this.value);"; placeholder="Количество" required>
+								</div>
+								<div id="additional"></div>
+								<div class="form-group">
+                                        <input type="submit" name="order" class="submit_btn btn btn-mod btn-medium btn-round" value="Заказать">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-sm-5 mb-20 col-sm-offset-2 col-portlet">
+						<div class="col-sm-12">
+							<div class="text">
+								<h5 class="uppercase">Ваш баланс: <span id="current-balance"><?php echo $UserBalance; ?> <?php echo $currency; ?></span></h5>
+								<hr>
+								<h5 class="uppercase">Спишется: <span id="price">0  <?php echo $currency; ?> </span> <i class="fa fa-repeat" style="cursor: pointer;"></i></h5>
+								<hr>
+								<h5 class="uppercase">Описание выбранной услуги:</h5>
+								<div class="col-sm-12 input-group m-bot15">
+								Минимальный заказ: <span id="min_quantity">0</span><br>
+								Максимум: <span id="max_quantity">0</span><br>
+								<span id="service-description">Выберите интересующую услугу.</span><br><br>
+								<a href="services.php" style="color: #249EC7; text-decoration: none;">Информация о всех услугах.</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="clear:both;">
+					    1. Аккаунты дожны быть открытыми и иметь аватарку.<br>
+						2. Одновременный запуск нескольких однотипных накруток по одной ссылке приведет к недокрутке без возможности перерасчета.<br>
+						3. После отправки, заказ невозможно отменить.
+					</div>
+				</div>
+			</div>
+	<?php
+		} else {
+			$display->ReturnInfo('Сорян\'товаров то нету.');
+		}
+	?>
+	</section>
+<?php
+	require_once('files/footer.php');
+?>
+
+<script>
+$(window).bind('beforeunload',function(){
+
+    $('body').html('');
+
+});
+</script>
